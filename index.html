@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Fonts 日本語フォント比較ツール - かわいいデザイン</title>
+    
+    <!-- 1. Google Fontsの読み込み (日本語フォント30種類 - 人気順) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Dela+Gothic+One&family=DotGothic16&family=Hachi+Maru+Pop&family=Hina+Mincho&family=Kaisei+Decol&family=Kaisei+Opti&family=Kiwi+Maru&family=Klee+One&family=Kosugi&family=Kosugi+Maru&family=M+PLUS+1p&family=M+PLUS+Rounded+1c&family=Mochiy+Pop+One&family=Murecho&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP&family=Rampart+One&family=Reggae+One&family=RocknRoll+One&family=Sawarabi+Gothic&family=Sawarabi+Mincho&family=Shippori+Antique&family=Shippori+Mincho&family=Shippori+Mincho+B1&family=Stick&family=Train+One&family=Yomogi&family=Yuji+Syuku&family=Yusei+Magic&family=Zen+Antique&family=Zen+Kaku+Gothic+New&family=Zen+Kurenaido&family=Zen+Maru+Gothic&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+
+    <!-- 2. スタイルの定義 -->
+    <style>
+        /* 基本設定 */
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #e0f2f7 100%); /* 優しいパステルグラデーション */
+            color: #4a4a4a; /* 落ち着いたグレー */
+            font-family: 'Noto Sans JP', sans-serif; /* デフォルトフォントを日本語に */
+            margin: 0;
+            padding: 2rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            min-height: 100vh; /* ページ全体の高さを確保 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 全体のコンテナ */
+        .container {
+            max-width: 960px;
+            width: 100%;
+            background-color: #ffffff; /* コンテナの背景は白 */
+            border-radius: 20px; /* より丸く */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* 柔らかく、少し大きめの影 */
+            padding: 3rem;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Mochiy Pop One', cursive; /* ポップな見出しフォント */
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+            color: #ff6f91; /* 可愛らしいピンク */
+            text-shadow: 2px 2px 8px rgba(255, 100, 150, 0.3); /* 柔らかな影 */
+            letter-spacing: 0.08em;
+        }
+
+        /* テキスト入力欄 */
+        #text-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.3rem;
+            border: 2px solid #ffccd5; /* 優しいピンクのボーダー */
+            border-radius: 15px; /* 丸く */
+            box-sizing: border-box;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 200, 210, 0.3); /* 軽い影 */
+            background-color: #fffafa; /* わずかにピンクがかった白 */
+            color: #555555;
+        }
+        #text-input::placeholder {
+            color: #ff99aa; /* 優しいピンクのプレースホルダー */
+        }
+        #text-input:focus {
+            outline: none;
+            border-color: #ff6f91; /* フォーカス時のボーダー色 */
+            box-shadow: 0 0 0 5px rgba(255, 111, 145, 0.3); /* フォーカス時のグロー効果 */
+        }
+
+        /* フォント表示エリア */
+        #font-display-area {
+            height: 60vh; /* ビューポートの高さの60% */
+            overflow-y: auto;
+            border: 1px solid #ffe0e6; /* 非常に薄いピンクのボーダー */
+            border-radius: 18px;
+            padding: 1.5rem;
+            background-color: #ffffff; /* 白い背景 */
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05); /* 内側の影 */
+        }
+
+        /* 各フォントのプレビューブロック */
+        .font-preview {
+            margin-bottom: 3.5rem; /* 行間の広さを確保 (調整) */
+            padding-bottom: 2rem;
+            border-bottom: 1px dashed #ffe0e6; /* 優しい点線で区切り */
+        }
+        .font-preview:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* フォント名 */
+        .font-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff; /* 白い文字色 */
+            margin-bottom: 1rem;
+            font-family: 'Noto Sans JP', sans-serif; /* フォント名は固定 */
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px; /* バッジ風に丸く */
+            display: inline-flex; /* アイコンとテキストを横並びに */
+            align-items: center;
+            gap: 0.5rem; /* アイコンとテキストの間隔 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* 影 */
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%); /* カラフルなグラデーション */
+            transition: transform 0.2s ease; /* ホバーアニメーション */
+        }
+        .font-name:hover {
+            transform: translateY(-3px); /* 少し浮き上がる */
+        }
+        .font-name::before {
+            content: '✨'; /* キラキラアイコン */
+            font-size: 1.2em;
+        }
+        .font-name .rank {
+            font-size: 0.8em;
+            font-weight: 900;
+            background-color: rgba(255, 255, 255, 0.3); /* 順位の背景 */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+        }
+
+        /* フォントサンプルテキスト */
+        .font-sample {
+            font-size: 2.8rem; /* 少し小さく調整 */
+            line-height: 1.6; /* テキスト自体の行間 */
+            word-wrap: break-word;
+            color: #333333; /* 濃いテキスト色 */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05); /* 非常に薄い影 */
+        }
+        
+        /* スマホ対応 */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                align-items: flex-start; /* 上に寄せる */
+            }
+            .container {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            #text-input {
+                font-size: 1rem;
+                padding: 1rem 1.2rem;
+                margin-bottom: 1.5rem;
+                border-radius: 10px;
+            }
+            .font-sample {
+                font-size: 2.2rem; /* スマホでも調整 */
+            }
+            .font-preview {
+                margin-bottom: 2.5rem; /* スマホでも調整 */
+                padding-bottom: 1.5rem;
+            }
+            .font-name {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+            }
+            .font-name .rank {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7em;
+            }
+            #font-display-area {
+                height: 50vh; /* スマホでは少し短く */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>かわいいフォントを比較しよう</h1>
+        <input type="text" id="text-input" placeholder="ここに比較したいテキストを入力してください...">
+        
+        <div id="font-display-area">
+            <!-- JavaScriptによってフォントがここに追加されます -->
+        </div>
+    </div>
+
+    <!-- 3. JavaScriptロジック -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 対象のGoogle Fontsリスト (日本語フォント30種類 - 人気順)
+            const fonts = [
+                'Noto Sans JP',
+                'Kosugi',
+                'Sawarabi Gothic',
+                'M PLUS 1p',
+                'Zen Kaku Gothic New',
+                'Dela Gothic One',
+                'DotGothic16',
+                'Noto Serif JP',
+                'Sawarabi Mincho',
+                'Shippori Mincho',
+                'Zen Old Mincho',
+                'Hina Mincho',
+                'Kaisei Opti',
+                'Kiwi Maru',
+                'Kosugi Maru',
+                'M PLUS Rounded 1c',
+                'Zen Maru Gothic',
+                'Klee One',
+                'Yusei Magic',
+                'Hachi Maru Pop',
+                'Yuji Syuku',
+                'Yomogi',
+                'Zen Kurenaido',
+                'Rampart One',
+                'Mochiy Pop One',
+                'Kaisei Decol',
+                'Aoboshi One',
+                'Shippori Antique',
+                'Murecho',
+                'Stick'
+            ];
+
+            const textInput = document.getElementById('text-input');
+            const fontDisplayArea = document.getElementById('font-display-area');
+            // デフォルトの日本語テキスト
+            const defaultText = 'こんにちは！かわいいフォントで、あなたのメッセージをもっと魅力的に彩りましょう。💖✨';
+
+            // 初期表示の生成
+            function initializeFontDisplays() {
+                fonts.forEach((font, index) => {
+                    // 各フォントのコンテナを作成
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'font-preview';
+
+                    // フォント名を表示する要素
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'font-name';
+                    nameDiv.innerHTML = `<span class="rank">${index + 1}</span>${font}`;
+
+                    // テキストサンプルを表示する要素
+                    const sampleDiv = document.createElement('div');
+                    sampleDiv.className = 'font-sample';
+                    sampleDiv.style.fontFamily = `'${font}', sans-serif`;
+                    sampleDiv.textContent = defaultText;
+                    
+                    // 組み立ててエリアに追加
+                    previewDiv.appendChild(nameDiv);
+                    previewDiv.appendChild(sampleDiv);
+                    fontDisplayArea.appendChild(previewDiv);
+                });
+                // 初期入力値を設定
+                textInput.value = defaultText;
+            }
+
+            // テキストが変更されたときの処理
+            function updateAllSamples(newText) {
+                const allSamples = document.querySelectorAll('.font-sample');
+                const textToShow = newText.trim() === '' ? defaultText : newText;
+                allSamples.forEach(sample => {
+                    sample.textContent = textToShow;
+                });
+            }
+
+            // イベントリスナーを設定
+            textInput.addEventListener('input', (e) => {
+                updateAllSamples(e.target.value);
+            });
+
+            // 初期化関数を実行
+            initializeFontDisplays();
+        });
+    </script>
+
+</body>
+</html>
